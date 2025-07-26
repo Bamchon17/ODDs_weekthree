@@ -22,12 +22,10 @@
             <span {% if todo.done %}class="done"{% endif %}>{{ todo.task }}</span>
             {% if not todo.done %}
             <form action="/mark-done/{{ todo.id }}" method="post" style="display:inline;">
-                <input type="hidden" name="_method" value="put">
                 <button type="submit">Mark Done</button>
             </form>
             {% endif %}
             <form action="/delete-todo/{{ todo.id }}" method="post" style="display:inline;">
-                <input type="hidden" name="_method" value="delete">
                 <button type="submit">Delete</button>
             </form>
         </li>
