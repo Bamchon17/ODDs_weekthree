@@ -1,22 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Todo App</title>
+    <title>Todo List</title>
+    <style>
+        .done { text-decoration: line-through; }
+    </style>
 </head>
 <body>
-    <h1>Simple Todo App</h1>
-
+    <h1>Todo List</h1>
     <form action="/create-todo" method="post">
-        <input type="text" name="item" placeholder="Enter a new todo" required>
-        <button type="submit">Add</button>
+        <input type="text" name="task" required>
+        <button type="submit">Add Todo</button>
     </form>
-
-    <h2>Todo List:</h2>
+    <div>
+        <a href="/?show_all=true"><button>Show All</button></a>
+        <a href="/unfinished"><button>Show Unfinished</button></a>
+    </div>
     <ul>
         {% for todo in todos %}
-            <li>{{ todo }}</li>
-        {% else %}
-            <li>No todos yet!</li>
+        <li>
+            <span {% if todo.done %}class="done"{% endif %}>{{ todo.task }}</span>
+            {% if not todo.done %}
+            <form action="/mark-done/{{ todo.id }}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="put">
+                <button type="submit">Mark Done</button>
+            </form>
+            {% endif %}
+            <form action="/delete-todo/{{ todo.id }}" method="post" style="display:inline;">
+                <input type="hidden" name="_method" value="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </li>
         {% endfor %}
     </ul>
 </body>
