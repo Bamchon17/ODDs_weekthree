@@ -3,19 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo List</title>
+    <title>Tarnished Todo Codex</title>
     <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
-        <h1>Todo List</h1>
+        <h1>Tarnished Todo Codex</h1>
         <form action="/create-todo" method="post" class="todo-form">
-            <input type="text" name="task" placeholder="Enter a new task" required>
-            <button type="submit">Add Task</button>
+            <input type="text" name="task" placeholder="Scribe thy task..." required>
+            <button type="submit">Inscribe Rune</button>
         </form>
         <div class="filter-buttons">
-            <a href="/?show_all=true"><button class="filter-btn">Show All</button></a>
-            <a href="/?show_all=false"><button class="filter-btn">Show Unfinished</button></a>
+            <a href="/?show_all=true"><button class="filter-btn">Reveal All</button></a>
+            <a href="/?show_all=false"><button class="filter-btn">Unfinished Quests</button></a>
         </div>
         <ul class="todo-list">
             {% for todo in todos %}
@@ -24,11 +25,11 @@
                 <div class="todo-actions">
                     {% if not todo.done %}
                     <form action="/mark-done/{{ todo.id }}" method="post">
-                        <button type="submit" class="action-btn mark-done">Mark Done</button>
+                        <button type="submit" class="action-btn mark-done">Seal Duty</button>
                     </form>
                     {% endif %}
                     <form action="/delete-todo/{{ todo.id }}" method="post">
-                        <button type="submit" class="action-btn delete">Delete</button>
+                        <button type="submit" class="action-btn delete">Banish Task</button>
                     </form>
                 </div>
             </li>

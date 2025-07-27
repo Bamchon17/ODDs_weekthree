@@ -3,97 +3,101 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Body styling */
+/* Body with Elden Ring background */
 body {
-    background-color: #f5f7fa;
-    color: #333;
+    background: url('https://images.wallpapersden.com/image/download/cool-elden-ring-4k_bmVnbGmUmZqaraWkpJRnamtlrWZpaWU.jpg') no-repeat center center fixed;
+    background-size: cover;
+    backdrop-filter: blur(10px); /* Blurred background */
+    color: #b0c4de; /* Light blue-gray for text */
     line-height: 1.6;
     padding: 20px;
+    font-family: 'Georgia', 'Times New Roman', serif; /* Archaic font feel */
 }
 
-/* Main container */
+/* Main container with blended Elden Ring style */
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background: rgba(10, 15, 25, 0.85); /* Darker blue-toned overlay */
+    padding: 40px;
+    border: 2px solid #2e3a4f;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    position: relative;
+    background-image: url('https://www.transparenttextures.com/patterns/cracked-mud.png'); /* Cracked texture to mimic Elden Ring terrain */
 }
 
-/* Heading */
+/* Heading with static blue tone */
 h1 {
     text-align: center;
-    color: #2c3e50;
+    color: #4682b4; /* Steel blue for heading */
     margin-bottom: 30px;
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 700;
+    text-shadow: 0 0 10px #5dade2, 0 0 20px rgba(93, 173, 226, 0.4); /* Soft blue glow */
 }
 
 /* Todo form */
 .todo-form {
     display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 15px;
+    margin-bottom: 30px;
 }
 
 .todo-form input {
     flex: 1;
     padding: 12px;
-    border: 1px solid #dfe6e9;
-    border-radius: 8px;
-    font-size: 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #2e3a4f;
+    border-radius: 5px;
+    color: #b0c4de;
+    font-size: 1.1rem;
     transition: border-color 0.3s ease;
 }
 
 .todo-form input:focus {
     outline: none;
-    border-color: #3498db;
-    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+    border-color: #5dade2;
 }
 
 .todo-form button {
     padding: 12px 24px;
-    background: #3498db;
-    color: white;
+    background: #34495e;
+    color: #b0c4de;
     border: none;
-    border-radius: 8px;
+    border-radius: 5px;
     font-size: 1rem;
-    font-weight: 500;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .todo-form button:hover {
-    background: #2980b9;
+    background: #46637f;
 }
 
 /* Filter buttons */
 .filter-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .filter-btn {
     padding: 10px 20px;
-    background: #ecf0f1;
-    color: #2c3e50;
-    border: none;
-    border-radius: 8px;
+    background: #283747;
+    color: #b0c4de;
+    border: 1px solid #2e3a4f;
+    border-radius: 5px;
     font-size: 0.9rem;
-    font-weight: 500;
     cursor: pointer;
-    transition: background 0.3s ease, color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
 .filter-btn:hover {
-    background: #3498db;
-    color: white;
+    background: #34495e;
 }
 
 /* Todo list */
@@ -106,22 +110,33 @@ h1 {
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    border-bottom: 1px solid #dfe6e9;
-    transition: background 0.2s ease;
+    border-bottom: 1px solid #2e3a4f;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: transform 0.3s ease;
 }
 
 .todo-item:hover {
-    background: #f8fafc;
+    transform: translateX(5px);
+}
+
+.todo-item::before {
+    content: '✦';
+    color: #5dade2; /* Blue rune-like glow */
+    margin-right: 10px;
+    font-size: 1.2rem;
 }
 
 .task {
-    font-size: 1.1rem;
-    color: #2c3e50;
+    font-size: 1.2rem;
+    color: #b0c4de;
 }
 
 .task.done {
     text-decoration: line-through;
-    color: #7f8c8d;
+    color: #7a8ea0;
+    opacity: 0.7;
 }
 
 /* Action buttons */
@@ -133,28 +148,28 @@ h1 {
 .action-btn {
     padding: 8px 16px;
     border: none;
-    border-radius: 6px;
+    border-radius: 5px;
     font-size: 0.9rem;
     cursor: pointer;
     transition: background 0.3s ease;
 }
 
 .mark-done {
-    background: #2ecc71;
-    color: white;
+    background: #2e4057;
+    color: #b0c4de;
 }
 
 .mark-done:hover {
-    background: #27ae60;
+    background: #3f5c7a;
 }
 
 .delete {
-    background: #e74c3c;
-    color: white;
+    background: #633232;
+    color: #b0c4de;
 }
 
 .delete:hover {
-    background: #c0392b;
+    background: #854242;
 }
 
 /* Responsive design */
