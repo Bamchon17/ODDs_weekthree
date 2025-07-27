@@ -5,13 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarnished Todo Codex</title>
     <link rel="stylesheet" href="/static/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Georgia&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="container">
         <h1>Tarnished Todo Codex</h1>
+        <div class="stats">
+            Pending: {{ todos | rejectattr('done') | list | count }} | 
+            Completed: {{ todos | selectattr('done') | list | count }}
+        </div>
+        <form action="/search" method="get" class="search-form">
+            <input type="text" name="query" placeholder="Search tasks..." value="{{ search_query or '' }}">
+            <button type="submit">Search</button>
+        </form>
         <form action="/create-todo" method="post" class="todo-form">
             <input type="text" name="task" placeholder="Scribe thy task..." required>
+            <select name="category">
+                <option value="General">General</option>
+                <option value="Work">Work</option>
+                <option value="Personal">Personal</option>
+                <option value="Urgent">Urgent</option>
+            </select>
+            <input type="date" name="due_date">
+            <select name="priority">
+                <option value="Low">Low</option>
+                <option value="Medium">Medium</option>
+                <option value="High">High</option>
+            </select>
             <button type="submit">Inscribe Rune</button>
         </form>
         <div class="filter-buttons">
@@ -20,8 +40,10 @@
         </div>
         <ul class="todo-list">
             {% for todo in todos %}
-            <li class="todo-item">
-                <span class="task {% if todo.done %}done{% endif %}">{{ todo.task }}</span>
+            <li class="todo-item priority-{{ todo.priority|lower }}">
+                <span class="task {% if todo.done %}done{% endif %}">{{ todo.task }} 
+                    <small>({{ todo.category }}, {{ todo.due_date or 'No Due Date' }}, {{ todo.priority }})</small>
+                </span>
                 <div class="todo-actions">
                     {% if not todo.done %}
                     <form action="/mark-done/{{ todo.id }}" method="post">
@@ -35,6 +57,7 @@
             </li>
             {% endfor %}
         </ul>
+        <div class="footer">Last Updated: {{ now.strftime('%Y-%m-%d %H:%M:%S') }}</div>
     </div>
 </body>
 </html>

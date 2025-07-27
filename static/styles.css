@@ -9,68 +9,97 @@
 body {
     background: url('https://images.wallpapersden.com/image/download/cool-elden-ring-4k_bmVnbGmUmZqaraWkpJRnamtlrWZpaWU.jpg') no-repeat center center fixed;
     background-size: cover;
-    backdrop-filter: blur(10px); /* Blurred background */
-    color: #b0c4de; /* Light blue-gray for text */
+    backdrop-filter: blur(10px);
+    color: #b0c4de;
     line-height: 1.6;
     padding: 20px;
-    font-family: 'Georgia', 'Times New Roman', serif; /* Archaic font feel */
+    font-family: 'Georgia', 'Times New Roman', serif;
 }
 
 /* Main container with blended Elden Ring style */
 .container {
     max-width: 800px;
     margin: 0 auto;
-    background: rgba(10, 15, 25, 0.85); /* Darker blue-toned overlay */
+    background: rgba(10, 15, 25, 0.85);
     padding: 40px;
     border: 2px solid #2e3a4f;
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
     position: relative;
-    background-image: url('https://www.transparenttextures.com/patterns/cracked-mud.png'); /* Cracked texture to mimic Elden Ring terrain */
+    background-image: url('https://www.transparenttextures.com/patterns/cracked-mud.png');
 }
 
 /* Heading with static blue tone */
 h1 {
     text-align: center;
-    color: #4682b4; /* Steel blue for heading */
+    color: #4682b4;
     margin-bottom: 30px;
     font-size: 2.8rem;
     font-weight: 700;
-    text-shadow: 0 0 10px #5dade2, 0 0 20px rgba(93, 173, 226, 0.4); /* Soft blue glow */
+    text-shadow: 0 0 10px #5dade2, 0 0 20px rgba(93, 173, 226, 0.4);
+}
+
+/* Stats */
+.stats {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #7a8ea0;
+}
+
+/* Search form */
+.search-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.search-form input {
+    flex: 1;
+    padding: 10px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid #2e3a4f;
+    border-radius: 5px;
+    color: #b0c4de;
+}
+
+.search-form button {
+    padding: 10px 20px;
+    background: #34495e;
+    color: #b0c4de;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-form button:hover {
+    background: #46637f;
 }
 
 /* Todo form */
 .todo-form {
     display: flex;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
-.todo-form input {
-    flex: 1;
-    padding: 12px;
+.todo-form input, .todo-form select {
+    padding: 10px;
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid #2e3a4f;
     border-radius: 5px;
     color: #b0c4de;
-    font-size: 1.1rem;
-    transition: border-color 0.3s ease;
-}
-
-.todo-form input:focus {
-    outline: none;
-    border-color: #5dade2;
+    flex: 1;
+    min-width: 150px;
 }
 
 .todo-form button {
-    padding: 12px 24px;
+    padding: 10px 20px;
     background: #34495e;
     color: #b0c4de;
     border: none;
     border-radius: 5px;
-    font-size: 1rem;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .todo-form button:hover {
@@ -82,7 +111,7 @@ h1 {
     display: flex;
     gap: 15px;
     justify-content: center;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .filter-btn {
@@ -93,7 +122,6 @@ h1 {
     border-radius: 5px;
     font-size: 0.9rem;
     cursor: pointer;
-    transition: background 0.3s ease;
 }
 
 .filter-btn:hover {
@@ -123,10 +151,14 @@ h1 {
 
 .todo-item::before {
     content: '✦';
-    color: #5dade2; /* Blue rune-like glow */
+    color: #5dade2;
     margin-right: 10px;
     font-size: 1.2rem;
 }
+
+.priority-low { border-left: 4px solid #7a8ea0; }
+.priority-medium { border-left: 4px solid #4682b4; }
+.priority-high { border-left: 4px solid #ff4500; }
 
 .task {
     font-size: 1.2rem;
@@ -137,6 +169,12 @@ h1 {
     text-decoration: line-through;
     color: #7a8ea0;
     opacity: 0.7;
+}
+
+small {
+    font-size: 0.8rem;
+    color: #7a8ea0;
+    margin-left: 10px;
 }
 
 /* Action buttons */
@@ -172,21 +210,29 @@ h1 {
     background: #854242;
 }
 
+/* Footer */
+.footer {
+    text-align: center;
+    margin-top: 20px;
+    color: #7a8ea0;
+    font-size: 0.9rem;
+}
+
 /* Responsive design */
-@media (max-width: 600px) {
+@media (max-width: 900px) {
     .container {
         padding: 20px;
     }
 
     h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
     }
 
-    .todo-form {
+    .todo-form, .search-form {
         flex-direction: column;
     }
 
-    .todo-form button {
+    .todo-form button, .search-form button {
         width: 100%;
     }
 
@@ -209,5 +255,11 @@ h1 {
     .todo-actions {
         width: 100%;
         justify-content: flex-end;
+    }
+}
+
+@media (max-width: 600px) {
+    .todo-form input, .todo-form select {
+        min-width: 100%;
     }
 }
