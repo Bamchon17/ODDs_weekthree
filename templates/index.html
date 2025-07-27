@@ -1,35 +1,39 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo List</title>
-    <style>
-        .done { text-decoration: line-through; }
-    </style>
+    <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <h1>Todo List</h1>
-    <form action="/create-todo" method="post">
-        <input type="text" name="task" required>
-        <button type="submit">Add Todo</button>
-    </form>
-    <div>
-        <a href="/?show_all=true"><button>Show All</button></a>
-        <a href="/unfinished"><button>Show Unfinished</button></a>
+    <div class="container">
+        <h1>Todo List</h1>
+        <form action="/create-todo" method="post" class="todo-form">
+            <input type="text" name="task" placeholder="Enter a new task" required>
+            <button type="submit">Add Task</button>
+        </form>
+        <div class="filter-buttons">
+            <a href="/?show_all=true"><button class="filter-btn">Show All</button></a>
+            <a href="/?show_all=false"><button class="filter-btn">Show Unfinished</button></a>
+        </div>
+        <ul class="todo-list">
+            {% for todo in todos %}
+            <li class="todo-item">
+                <span class="task {% if todo.done %}done{% endif %}">{{ todo.task }}</span>
+                <div class="todo-actions">
+                    {% if not todo.done %}
+                    <form action="/mark-done/{{ todo.id }}" method="post">
+                        <button type="submit" class="action-btn mark-done">Mark Done</button>
+                    </form>
+                    {% endif %}
+                    <form action="/delete-todo/{{ todo.id }}" method="post">
+                        <button type="submit" class="action-btn delete">Delete</button>
+                    </form>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
     </div>
-    <ul>
-        {% for todo in todos %}
-        <li>
-            <span {% if todo.done %}class="done"{% endif %}>{{ todo.task }}</span>
-            {% if not todo.done %}
-            <form action="/mark-done/{{ todo.id }}" method="post" style="display:inline;">
-                <button type="submit">Mark Done</button>
-            </form>
-            {% endif %}
-            <form action="/delete-todo/{{ todo.id }}" method="post" style="display:inline;">
-                <button type="submit">Delete</button>
-            </form>
-        </li>
-        {% endfor %}
-    </ul>
 </body>
 </html>

@@ -5,8 +5,12 @@ from fastapi.templating import Jinja2Templates
 from fastapi import Request
 from typing import List
 from pydantic import BaseModel
+from datetime import datetime
+from fastapi.staticfiles import StaticFiles
+
 
 app = FastAPI()
+app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 class Todo(BaseModel):
@@ -20,7 +24,15 @@ next_id = 1
 @app.get("/", response_class=templates.TemplateResponse)
 async def read_root(request: Request, show_all: bool = True):
     display_todos = todos if show_all else [todo for todo in todos if not todo.done]
-    return templates.TemplateResponse("index.html", {"request": request, "todos": display_todos, "show_all": show_all})
+    return templates.TemplateResponse("index.html",
+            {"request": request, 
+             "todos": display_todos, 
+             "show_all": show_all,
+             "now": datetime.now()
+               })
+
+
+   
 
 @app.post("/create-todo", response_class=RedirectResponse)
 async def create_todo(task: str = Form(...)):
